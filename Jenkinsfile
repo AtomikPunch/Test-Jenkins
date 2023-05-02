@@ -24,10 +24,4 @@ pipeline{
             }
         }
     }
-
-    post{
-        always{
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/videos', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-        }
-    }
 }
