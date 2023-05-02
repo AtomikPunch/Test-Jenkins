@@ -10,7 +10,7 @@ pipeline{
         stage('install prerequisite'){
             steps{
                 bat "npm install cypress"
-                bat "npm install –save-dev cypress-cucumber-preprocessor "
+                bat "npm install -save-dev cypress-cucumber-preprocessor "
             }
         }
         stage('testing'){
