@@ -6,10 +6,6 @@ pipeline{
         string(name: 'SPEC', defaultValue: "cypress/e2e/**", description:"enter the script path that you want to execute")
     }
 
-    options{
-        ansiColor('xterm')
-    }
-
     stages{
         stage('build'){
             steps{
