@@ -17,6 +17,7 @@ module.exports = defineConfig({
     specPattern: "**/*.feature",
     stepdefinitions: "**/support/step_definitions/**/*.js",
     fixturesFolder: 'cypress/resources',
-    setupNodeEvents,
+    reporter: 'mochawesome',
+    setupNodeEvents, 
   },
 });
