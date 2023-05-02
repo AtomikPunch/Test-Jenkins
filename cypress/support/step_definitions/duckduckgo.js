@@ -16,3 +16,9 @@ Then("I should see a search bar", () => {
 })
   assert.deepEqual({}, {});
 });
+
+Then("I search something", () => {
+  cy.get("@bag").then((bag) => {
+    bag.pages.test.search_input.type("test").type("{enter}");
+  });
+})

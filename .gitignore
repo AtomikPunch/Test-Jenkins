@@ -5,4 +5,4 @@ screenshots
 videos
 downloads
 /package-lock.json
-/mochawesome-report/assets
+cypress/reports/assets

@@ -17,7 +17,13 @@ module.exports = defineConfig({
     specPattern: "**/*.feature",
     stepdefinitions: "**/support/step_definitions/**/*.js",
     fixturesFolder: 'cypress/resources',
-    reporter: 'mochawesome',
     setupNodeEvents, 
   },
+  reporter: 'mochawesome',
+  "reporterOptions": {
+    "charts": true,
+    "reportDir": "cypress/reports",
+    "reportFilename": "report",
+    "overwrite": false
+  }
 });
