@@ -1,10 +1,4 @@
 pipeline{
-    agent any
-
-    parameters{
-        string(name:'SPEC', defaultValue: "cypress/e2E/**/*.feature", description:"enter the script path blablabla")
-        choice(name: 'Browser', choices: ['chrome', 'edge'], description: "browser choice blablabla") 
-    }
 
     options{
         ansiColor('xterm')
