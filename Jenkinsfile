@@ -15,7 +15,7 @@ pipeline{
         }
         stage('testing'){
             steps{
-                bat "npx cyress run"
+                bat "npx cypress run"
             }
         }
         stage('deploying'){
