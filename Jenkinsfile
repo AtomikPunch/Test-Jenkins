@@ -7,14 +7,14 @@ pipeline{
     }
 
     stages{
-        stage('build'){
+        stage('install prerequisite'){
             steps{
-                echo "building app"
+                bat "npm install cypress"
+                bat "npm install –save-dev cypress-cucumber-preprocessor "
             }
         }
         stage('testing'){
             steps{
-                bat "npm i"
                 bat "npx cyress run"
             }
         }
