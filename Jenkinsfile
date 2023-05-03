@@ -12,6 +12,7 @@ pipeline{
             steps{
                 bat "npm install cypress"
                 bat "npm install -save-dev cypress-cucumber-preprocessor "
+                //npm install -g mochawesome-report-generator
             }
         }
         stage('testing'){
@@ -19,9 +20,17 @@ pipeline{
                 bat "npx cypress run --reporter mochawesome"
             }
         }
-        stage('reporting'){
+        stage('generating general report'){
             steps{
-                echo "deploy the app"
+                echo "generate general reporting in json format"
+                bat "npx mochawesome-merge cypress/reports/*.json -o cypress/reports/final_report.json"
+                echo "generate report in html format"
+                bat "npx marge cypress/reports/final_report.json -o cypress/reports --reportFilename report.html"
+            }
+        }
+        stage('publish report'){
+            steps{
+                echo "publish reporting in jenkins"
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }

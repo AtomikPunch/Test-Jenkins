@@ -24,6 +24,8 @@ module.exports = defineConfig({
     "charts": true,
     "reportDir": "cypress/reports",
     "reportFilename": "report",
-    "overwrite": false
+    "overwrite": false,
+    "html": false,
+    "json": true
   }
 });
