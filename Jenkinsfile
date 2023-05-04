@@ -26,12 +26,14 @@ pipeline{
                 bat "npx mochawesome-merge cypress/reports/*.json -o cypress/reports/final_report.json"
                 echo "generate report in html format"
                 bat "npx marge cypress/reports/final_report.json -o cypress/reports --reportFilename report.html"
+                echo "trying something"
+                bat "rm cypress/reports/*.json"
             }
         }
         stage('publish report'){
             steps{
                 echo "publish reporting in jenkins"
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }    
