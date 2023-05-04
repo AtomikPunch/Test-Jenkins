@@ -27,7 +27,7 @@ pipeline{
                 echo "generate report in html format"
                 bat "npx marge cypress/reports/final_report.json -o cypress/reports --reportFilename report.html"
                 echo "trying something"
-                bat "del cypress/reports/*.json"
+                bat 'del cypress\\reports\\*.json'
             }
         }
         stage('publish report'){
