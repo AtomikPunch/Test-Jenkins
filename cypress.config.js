@@ -19,7 +19,7 @@ module.exports = defineConfig({
     fixturesFolder: 'cypress/resources',
     setupNodeEvents, 
   },
-  reporter: 'mochawesome',
+  /*reporter: 'mochawesome',
   "reporterOptions": {
     "charts": true,
     "reportDir": "cypress/reports",
@@ -27,5 +27,5 @@ module.exports = defineConfig({
     "overwrite": false,
     "html": false,
     "json": true
-  }
+  }*/
 });
