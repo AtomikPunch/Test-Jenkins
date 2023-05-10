@@ -10,17 +10,17 @@ pipeline{
     stages{
         stage('install prerequisite'){
             steps{
-                sh "npm install" 
+                bat "npm install" 
             }
         }
         stage('testing'){
             steps{
-                sh "npx cypress run" 
+                bat "npx cypress run" 
             }
         }
         stage('generate report'){
             steps{
-                sh "node generate-html-report.js"
+                bat "node generate-html-report.js"
             }
         }
         stage('publish report'){
