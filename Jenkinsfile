@@ -4,7 +4,7 @@ pipeline{
 
     parameters{
         //string(name: 'SPEC', defaultValue: "cypress/e2e/**", description:"enter the script path that you want to execute")
-        choice(name: 'SPEC', choices: ['duckduckgo', 'test', 'anotherone'], description: 'enter the script path that you want to execute')
+        choice(name: 'SPEC', choices: ['All', 'T01', 'T02'], description: 'enter the script path that you want to execute')
     }
 
     stages{
@@ -15,7 +15,7 @@ pipeline{
         }
         stage('testing'){
             steps{
-                bat "npx cypress run" 
+                bat "npx cypress run --env tags=@$SPEC" 
             }
         }
         stage('generate report'){
