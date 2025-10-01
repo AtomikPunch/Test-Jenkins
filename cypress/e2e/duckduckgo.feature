@@ -1,11 +1,12 @@
 @All
-Feature: duckduckgo.com
+Feature: DuckDuckGo Search
 
   @T01
-  Scenario: visiting the frontpage
+  Scenario: Visiting the frontpage
     When I visit duckduckgo.com
     Then I should see a search bar
 
   @T02
-  Scenario: Test
+  Scenario: Performing a search
     When I visit duckduckgo.com
+    Then I search something

@@ -1,12 +1,18 @@
 const { defineConfig } = require("cypress");
-const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
-const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const { addCucumberPreprocessorPlugin } = require("@badeball/cypress-cucumber-preprocessor");
+const { createEsbuildPlugin } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
 async function setupNodeEvents(on, config) {
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
-  await preprocessor.addCucumberPreprocessorPlugin(on, config);
+  await addCucumberPreprocessorPlugin(on, config);
 
-  on("file:preprocessor", browserify.default(config));
+  on(
+    "file:preprocessor",
+    createBundler({
+      plugins: [createEsbuildPlugin(config)],
+    })
+  );
 
   // Make sure to return the config object as it might have been modified by the plugin.
   return config;
@@ -14,18 +20,18 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: "**/*.feature",
-    stepdefinitions: "**/support/step_definitions/**/*.js",
-    fixturesFolder: 'cypress/resources',
-    setupNodeEvents, 
+    baseUrl: "https://duckduckgo.com",
+    specPattern: "cypress/e2e/**/*.feature",
+    supportFile: "cypress/support/e2e.js",
+    fixturesFolder: "cypress/resources",
+    setupNodeEvents,
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    defaultCommandTimeout: 10000,
+    requestTimeout: 10000,
+    responseTimeout: 10000,
+    video: false,
+    screenshotOnRunFailure: true,
+    chromeWebSecurity: false,
   },
-  /*reporter: 'mochawesome',
-  "reporterOptions": {
-    "charts": true,
-    "reportDir": "cypress/reports",
-    "reportFilename": "report",
-    "overwrite": false,
-    "html": false,
-    "json": true
-  }*/
 });

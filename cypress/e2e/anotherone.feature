@@ -1,5 +1,5 @@
 @All
-Feature: new duckduckgo.com
+Feature: Another DuckDuckGo Test
 
   @SC01
   Scenario: I search something
